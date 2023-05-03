@@ -5,7 +5,10 @@ type InputContainerProps = {
   children: ReactNode;
 };
 
-export default function InputContainer({ text, children }: InputContainerProps) {
+export default function InputContainer({
+  text,
+  children,
+}: InputContainerProps) {
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor="amount" className="font-medium w-full">

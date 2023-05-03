@@ -1,5 +1,6 @@
-import { CurrencyDollar } from "@phosphor-icons/react";
 import Link from "next/link";
+
+import { CurrencyDollar } from "@phosphor-icons/react";
 
 export default function MenuDesktop() {
   return (
@@ -9,7 +10,7 @@ export default function MenuDesktop() {
           <CurrencyDollar size={40} weight="bold" />
         </Link>
 
-        <nav className="flex items-center gap-8 text-lg">
+        <nav className="flex items-center gap-8">
           <Link href="" className="hover:scale-105 duration-300">
             Home
           </Link>
@@ -21,7 +22,7 @@ export default function MenuDesktop() {
           </Link>
         </nav>
 
-        <button className="primary-button text-lg">Baixe o aplicativo</button>
+        <button className="primary-button">Baixe o aplicativo</button>
       </div>
     </div>
   );
