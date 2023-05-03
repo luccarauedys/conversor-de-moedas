@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import { List, X } from "@phosphor-icons/react";
+import { CurrencyDollar, List, X } from "@phosphor-icons/react";
 
 export default function MenuMobile() {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -8,7 +8,7 @@ export default function MenuMobile() {
   return (
     <div className="container flex justify-between text-white p-6">
       <Link href="/" className="uppercase text-xl font-semibold">
-        Conversor
+        <CurrencyDollar size={30} weight="bold" />
       </Link>
 
       <List weight="bold" onClick={() => setMenuIsOpen(true)} className="text-3xl cursor-pointer hover:scale-110 duration-500" />
@@ -25,7 +25,7 @@ export default function MenuMobile() {
             <Link href="/" className="uppercase text-base font-medium text-center hover:scale-105 duration-300">
               Recursos
             </Link>
-            <Link href="/" className="primary-button mt-4 w-[180px] text-center mx-auto">
+            <Link href="/" className="primary-button w-[180px] text-center mx-auto">
               Baixe o aplicativo
             </Link>
           </div>

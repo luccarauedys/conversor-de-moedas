@@ -1,3 +1,4 @@
+import { CurrencyDollar } from "@phosphor-icons/react";
 import Link from "next/link";
 
 export default function MenuDesktop() {
@@ -5,7 +6,7 @@ export default function MenuDesktop() {
     <div className="flex justify-between items-center text-white h-[80px] px-8">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="uppercase font-semibold text-2xl">
-          Conversor
+          <CurrencyDollar size={40} weight="bold" />
         </Link>
 
         <nav className="flex items-center gap-8 text-lg">

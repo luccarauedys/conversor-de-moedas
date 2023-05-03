@@ -1,5 +1,7 @@
-import Header from "@/components/Header";
 import { Roboto } from "next/font/google";
+
+import Header from "@/components/Header";
+import Main from "@/components/Main";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -9,12 +11,11 @@ const roboto = Roboto({
 
 export default function Home() {
   return (
-    <main className={`${roboto.className} min-h-screen flex flex-col`}>
-      <div className="background">
+    <div className={`${roboto.className} min-h-screen flex flex-col`}>
+      <div className="background flex flex-col gap-4 md:gap-8">
         <Header />
-
-        <div className="container w-[90%]"></div>
+        <Main />
       </div>
-    </main>
+    </div>
   );
 }
