@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import { Roboto } from "next/font/google";
 
 const roboto = Roboto({
@@ -10,11 +11,9 @@ export default function Home() {
   return (
     <main className={`${roboto.className} min-h-screen flex flex-col`}>
       <div className="background">
-        <div className="header"></div>
+        <Header />
 
-        <div className="container w-[90%]">
-          <h1>Conversor de moedas</h1>
-        </div>
+        <div className="container w-[90%]"></div>
       </div>
     </main>
   );

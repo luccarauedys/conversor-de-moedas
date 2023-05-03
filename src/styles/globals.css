@@ -17,8 +17,14 @@
   }
 }
 
+@layer components {
+  .primary-button {
+    @apply bg-blue-950 text-white py-2 px-4 rounded font-medium hover:bg-blue-900 duration-500;
+  }
+}
+
 @layer utilities {
   .background {
-    @apply h-[50vh] bg-dark-blue bg-[url('/world-map.svg')] bg-cover bg-center bg-no-repeat;
+    @apply h-[50vh] bg-blue-600 bg-[url('/world-map.svg')] bg-cover bg-center bg-no-repeat;
   }
 }
