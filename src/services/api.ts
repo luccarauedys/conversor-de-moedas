@@ -7,7 +7,12 @@ export async function getAllCurrencies(): Promise<Currency> {
   return data;
 }
 
-export async function getCurrencyComparison(c1: string, c2: string) {
+type CurrencyPair = {
+  c1: string;
+  c2: string;
+};
+
+export async function getCurrencyComparison({ c1, c2 }: CurrencyPair) {
   const URL = `${process.env.API_URL}/latest/currencies/${c1}/${c2}.json`;
   const response = await fetch(URL);
   const data = response.json();

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { ArrowsDownUp } from "@phosphor-icons/react";
 import { Currency } from "@/models";
-import { getAllCurrencies } from "@/services/api";
+import { getAllCurrencies, getCurrencyComparison } from "@/services/api";
 import InputContainer from "./InputContainer";
+import { convertValue } from "@/utils/currency-converter";
 
 export default function FormContainer() {
   const [currencies, setCurrencies] = useState<Currency | null>(null);
-  const [amount, setAmount] = useState("1,00");
+  const [amount, setAmount] = useState<number>(0);
+  const [convertedValue, setConvertedValue] = useState<number | null>(null);
   const [currencyPair, setCurrencyPair] = useState({
     c1: "brl - Brazilian real",
     c2: "usd - United States dollar",
@@ -17,13 +19,31 @@ export default function FormContainer() {
     setCurrencies(data);
   };
 
+  const handleChangeAmount = (value: number) => {
+    setConvertedValue(null);
+    setAmount(value);
+  };
+
   const handleSwapCurrencies = () => {
     const currency1 = currencyPair.c1;
     const currency2 = currencyPair.c2;
+
     setCurrencyPair({ c1: currency2, c2: currency1 });
+    handleConvertValue();
   };
 
-  const handleConvertValue = async () => {};
+  const handleConvertValue = async () => {
+    let { c1, c2 } = currencyPair;
+
+    c1 = c1.split("-")[0].trim();
+    c2 = c2.split("-")[0].trim();
+
+    const data = await getCurrencyComparison({ c1, c2 });
+    const exchangeRate = data[c2];
+
+    const converted = convertValue(amount, exchangeRate);
+    setConvertedValue(converted);
+  };
 
   useEffect(() => {
     getCurrencies();
@@ -35,11 +55,10 @@ export default function FormContainer() {
         <InputContainer text="Valor">
           <input
             id="amount"
-            type="text"
-            inputMode="decimal"
+            type="number"
+            placeholder="1.00"
             className="w-full h-[50px] p-4 rounded-md bg-white border-[1px] border-[#bababa] shadow-sm"
-            value={amount}
-            onChange={(event) => setAmount(event.target.value)}
+            onChange={(e) => handleChangeAmount(parseFloat(e.target.value))}
           />
         </InputContainer>
 
@@ -92,9 +111,24 @@ export default function FormContainer() {
           </select>
         </InputContainer>
 
-        <button className="primary-button bg-blue-600 hover:bg-blue-800 duration-500">
+        <button
+          className="primary-button bg-blue-600 hover:bg-blue-800 duration-500"
+          onClick={handleConvertValue}
+        >
           Converter
         </button>
+
+        {convertedValue && (
+          <div className="grid grid-cols-1 gap-2 mt-8">
+            <p className="font-medium">
+              {amount} {currencyPair.c1.split("-")[1].trim()} =
+            </p>
+
+            <h3 className="text-blue-600 text-3xl">
+              {convertedValue.toFixed(2)} {currencyPair.c2.split("-")[1].trim()}
+            </h3>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -20,9 +20,8 @@ export default function MenuDesktop() {
           <Link href="" className="hover:scale-105 duration-300">
             Recursos
           </Link>
+          <button className="primary-button">Baixe o aplicativo</button>
         </nav>
-
-        <button className="primary-button">Baixe o aplicativo</button>
       </div>
     </div>
   );
