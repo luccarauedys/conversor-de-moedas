@@ -4,7 +4,7 @@ import { CurrencyDollar } from "@phosphor-icons/react";
 
 export default function MenuDesktop() {
   return (
-    <div className="flex justify-between items-center text-white h-[80px] px-8">
+    <div className="flex justify-between items-center text-white h-[80px]">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="uppercase font-semibold text-2xl">
           <CurrencyDollar size={40} weight="bold" />
