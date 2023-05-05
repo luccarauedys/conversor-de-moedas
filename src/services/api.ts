@@ -1,19 +1,20 @@
 import { Currency } from "@/models";
 
+const API_BASE_URL =
+  "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@latest";
+
 export async function getAllCurrencies(): Promise<Currency> {
-  const URL = `${process.env.API_URL}/latest/currencies.json`;
+  const URL = `${API_BASE_URL}/latest/currencies.json`;
   const response = await fetch(URL);
   const data = response.json();
   return data;
 }
 
-type CurrencyPair = {
-  c1: string;
-  c2: string;
-};
-
-export async function getCurrencyComparison({ c1, c2 }: CurrencyPair) {
-  const URL = `${process.env.API_URL}/latest/currencies/${c1}/${c2}.json`;
+export async function getCurrencyComparison(
+  fromCurrencyCode: string,
+  toCurrencyCode: string
+) {
+  const URL = `${API_BASE_URL}/latest/currencies/${fromCurrencyCode}/${toCurrencyCode}.json`;
   const response = await fetch(URL);
   const data = response.json();
   return data;
